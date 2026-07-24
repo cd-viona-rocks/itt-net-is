@@ -57,11 +57,12 @@ def conv_from_dec(base: int):
         p = last_p
         while p >= 0:
             if pow(base,p) <= rest:
-                c = rest - pow(base,p) + 1
+                partial = pow(base,p)
+                c = rest // partial
+                rest -= c * partial
                 if base == 16 and c > 9:
                     c = HEX[c-10]
                 result += str(c)
-                rest -= pow(base,p) 
             else:
                 result += "0"
             p -= 1
